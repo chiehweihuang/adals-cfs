@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ADALS 2026 Call for Speakers — a practitioner-level dialogue on accessibility, ageing, and AI across the Asia-Pacific. Sessions run in English.">
+<title>Call for Speakers — ADALS 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Set theme before paint to avoid a flash of the wrong theme -->
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('adals-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) { /* localStorage unavailable — fall back to prefers-color-scheme */ }
+  })();
+</script>
+
+<style>
+  :root {
+    --bg: #fbf8f4;
+    --surface: #f3ede4;
+    --surface-2: #ebe2d3;
+    --text: #1c1d23;
+    --muted: #4a4d57;
+    --text-mute: #6b6e78;
+    --accent: #5a3a2e;
+    --accent-2: #8b5e3c;
+    --rule: #c9bfae;
+    --field-border: #8a7a60;
+    --error: #8a2b20;
+    --ok: #3f6b3a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161821;
+      --surface: #1d2030;
+      --surface-2: #262a3c;
+      --text: #e8e6df;
+      --muted: #b1ada3;
+      --text-mute: #9a978f;
+      --accent: #d4b27e;
+      --accent-2: #c9a87a;
+      --rule: #3a3d4e;
+      --field-border: #7d8093;
+      --error: #e8a99f;
+      --ok: #9ccb95;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #161821;
+    --surface: #1d2030;
+    --surface-2: #262a3c;
+    --text: #e8e6df;
+    --muted: #b1ada3;
+    --text-mute: #9a978f;
+    --accent: #d4b27e;
+    --accent-2: #c9a87a;
+    --rule: #3a3d4e;
+    --field-border: #7d8093;
+    --error: #e8a99f;
+    --ok: #9ccb95;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    font-size: clamp(1rem, 0.92rem + 0.4vw, 1.0625rem);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* === Skip link === */
+  .skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    transform: translateY(-110%);
+    z-index: 100;
+    font-weight: 500;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  /* === Toolbar === */
+  .toolbar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  .toolbar-inner {
+    max-width: 60rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem clamp(1.25rem, 4vw, 2.5rem);
+  }
+  .btn-toggle {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    color: var(--text);
+    padding: 0 0.7rem;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.78rem;
+    cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-toggle:hover { background: var(--surface-2); border-color: var(--accent); }
+  .btn-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* === Page chrome === */
+  .page {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  header.doc-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.9rem;
+    font-weight: 500;
+  }
+  h1 {
+    font-family: 'Fraunces', 'Noto Serif TC', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.875rem, 1.4rem + 1.8vw, 2.625rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem;
+  }
+  .lead {
+    font-family: 'Fraunces', 'Noto Serif TC', Georgia, serif;
+    font-size: clamp(1.0625rem, 0.95rem + 0.55vw, 1.1875rem);
+    line-height: 1.6;
+    color: var(--accent);
+    margin: 0 0 1.25rem;
+    font-weight: 500;
+  }
+
+  main { display: block; }
+  p { margin: 0 0 1.1em; }
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  a:hover { text-decoration-thickness: 2px; }
+  strong { font-weight: 600; }
+
+  h2 {
+    font-family: 'Fraunces', 'Noto Serif TC', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);
+    line-height: 1.25;
+    margin: 2.75rem 0 1rem;
+  }
+
+  /* === Theme list === */
+  .themes {
+    margin: 0 0 1.5rem;
+    padding-left: 0;
+    list-style: none;
+  }
+  .themes li {
+    padding: 0.55rem 0 0.55rem 1.6rem;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.55;
+  }
+  .themes li:last-child { border-bottom: none; }
+  .themes li::before {
+    content: counter(theme-c);
+    counter-increment: theme-c;
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .themes { counter-reset: theme-c; }
+  .themes li strong { color: var(--accent); }
+
+  .note {
+    background: var(--surface);
+    border-left: 3px solid var(--accent-2);
+    padding: 0.95rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.95rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* === Form === */
+  form { margin-top: 1rem; }
+
+  .form-intro {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+  }
+  .req-key {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  fieldset {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.25rem 1.35rem 1.5rem;
+    margin: 0 0 1.75rem;
+    background: var(--surface);
+  }
+  legend {
+    font-family: 'Fraunces', 'Noto Serif TC', Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--accent);
+    padding: 0 0.5rem;
+    margin-left: -0.25rem;
+  }
+
+  .field { margin-bottom: 1.4rem; }
+  .field:last-child { margin-bottom: 0; }
+
+  .field > label,
+  .group-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    line-height: 1.45;
+  }
+
+  .req {
+    color: var(--accent);
+    font-weight: 600;
+    margin-left: 0.15rem;
+  }
+  .optional {
+    color: var(--text-mute);
+    font-weight: 400;
+    font-size: 0.85em;
+    margin-left: 0.25rem;
+  }
+
+  .hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 0.45rem;
+    line-height: 1.5;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  textarea,
+  select {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;            /* 16px — prevents iOS zoom-on-focus */
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--field-border);
+    border-radius: 4px;
+    padding: 0.6rem 0.7rem;
+    min-height: 44px;
+    line-height: 1.5;
+  }
+  textarea {
+    min-height: 6.5rem;
+    resize: vertical;
+  }
+  ::placeholder {
+    color: var(--text-mute);
+    opacity: 1;
+  }
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+  }
+  input[aria-invalid="true"],
+  textarea[aria-invalid="true"],
+  select[aria-invalid="true"] {
+    border-color: var(--error);
+    border-width: 2px;
+  }
+
+  .error {
+    color: var(--error);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0.35rem 0 0;
+    line-height: 1.5;
+  }
+  .error:empty { display: none; }
+  .error::before { content: "\26A0\FE0E"; margin-right: 0.35rem; }
+
+  /* Radio / checkbox groups */
+  .choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.5rem 0;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .choice input {
+    margin: 0;
+    width: 1.2rem;
+    height: 1.2rem;
+    min-width: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    accent-color: var(--accent);
+  }
+  .choice input:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .choice-list { margin-top: 0.2rem; }
+
+  .consent .choice { align-items: flex-start; }
+
+  /* Submit */
+  .btn-submit {
+    font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    padding: 0.85rem 2rem;
+    min-height: 48px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .btn-submit:hover { background: var(--accent-2); border-color: var(--accent-2); }
+  .btn-submit:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  /* Submit-time summary of errors */
+  .form-status {
+    margin: 1.5rem 0;
+    padding: 0.85rem 1.1rem;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .form-status:empty { display: none; }
+  .form-status.is-error {
+    background: var(--surface);
+    border: 2px solid var(--error);
+    color: var(--error);
+  }
+
+  footer.doc-footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.8125rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  footer.doc-footer a { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition: none !important;
+    }
+  }
+
+  @media (max-width: 32rem) {
+    fieldset { padding: 1rem 1rem 1.25rem; }
+    .btn-submit { width: 100%; }
+  }
+
+  @media print {
+    .skip-link, .toolbar, .btn-submit { display: none; }
+    body { background: #fff; color: #000; }
+    fieldset { background: #fff; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <button class="btn-toggle" id="theme-toggle" type="button" aria-pressed="false">
+      <span aria-hidden="true">&#9680;</span>
+      <span class="visually-hidden">Toggle light or dark theme</span>
+    </button>
+  </div>
+</div>
+
+<div class="page">
+
+  <header class="doc-header">
+    <p class="eyebrow">ADALS 2026 &middot; Asia-Pacific dialogue on accessibility, ageing &amp; AI</p>
+    <h1>Call for Speakers</h1>
+    <p class="lead">We are looking for practitioners from across the Asia-Pacific to join a working dialogue on accessibility, ageing, and AI.</p>
+    <p>ADALS 2026 is a first-edition, practitioner-level event. It is built around conversation, not lectures &mdash; mid-career practitioners and the people inside intermediary organisations comparing what actually works. If you are doing this work somewhere in the Asia-Pacific, we would like to hear from you.</p>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section aria-labelledby="h-about">
+      <h2 id="h-about">Before you start</h2>
+      <p>A few things worth knowing before you fill this in:</p>
+      <ul class="themes" aria-label="Practical notes">
+        <li><strong>Sessions run in English.</strong> ADALS 2026 is a pan-regional dialogue, so the working language is English. You do not need to be a native speaker &mdash; you do need to be comfortable presenting and taking part in discussion in English.</li>
+        <li><strong>In person or remote.</strong> The event is anchored in Taiwan, but remote participation is genuinely supported. Travel is not a requirement for taking part.</li>
+        <li><strong>This is an expression of interest.</strong> Submitting does not confirm a slot. The organising team will be in touch to talk through fit and format.</li>
+      </ul>
+
+      <p>The programme is built around five themes. Your proposed session should connect to one of them (or tell us it spans several):</p>
+      <ol class="themes" aria-label="The five themes">
+        <li><strong>Trust &amp; Transparency</strong> &mdash; opaque decisions, and the right to challenge them as AI scales.</li>
+        <li><strong>Who Can Use Daily Services?</strong> &mdash; the shifting threshold to everyday services, and who gets left at the door.</li>
+        <li><strong>Caregiving and Life in Old Age</strong> &mdash; care under strain, and whether AI catches the gap or adds to it.</li>
+        <li><strong>Understanding and Being Understood</strong> &mdash; communication across ability, language, and generation.</li>
+        <li><strong>Patches and Rebuilds in Governance</strong> &mdash; where accessibility sits inside organisations.</li>
+      </ol>
+
+      <div class="note">
+        <p><strong>On access and captioning.</strong> We want this to work for the people taking part. There is a field below for any access needs &mdash; please use it. We are also looking into live captioning for sessions; if captions in a particular language would help you or your audience, tell us there. We would rather know early than guess.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-form">
+      <h2 id="h-form">Speaker sign-up</h2>
+
+      <p class="form-intro">
+        Fields marked <span class="req-key">(required)</span> must be completed.
+        Everything else is optional &mdash; share what you can.
+      </p>
+
+      <!--
+        ============================================================
+        SUBMISSION ENDPOINT — NEEDS WIRING BEFORE THIS PAGE GOES LIVE
+        ============================================================
+        The form below is complete, valid, accessible markup, but it
+        does not yet send anywhere. Pick one:
+
+        1. Formspree (fastest, zero backend):
+           - Create a form at https://formspree.io
+           - Replace REPLACE_WITH_FORM_ID in the action attribute below
+           - Optionally add a hidden field:
+             <input type="hidden" name="_next" value="https://.../thank-you.html">
+
+        2. Google Apps Script (data lands in a Google Sheet you control;
+           best fit if you may later move to netiCRM — see vault doc
+           speaker-form-schema.md). Point action= at the deployed
+           Web App URL and keep method="POST".
+
+        3. Tally / Jotform: skip this form and embed/link theirs instead.
+
+        Until an endpoint is set, submitting will fail. That is intended —
+        it should not silently look like it worked.
+        ============================================================
+      -->
+      <form id="speaker-form" method="POST"
+            action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+            novalidate>
+
+        <div id="form-status" class="form-status" role="alert" aria-live="assertive"></div>
+
+        <fieldset>
+          <legend>About you</legend>
+
+          <div class="field">
+            <label for="name">Full name <span class="req">(required)</span>
+              <span class="visually-hidden">required</span>
+            </label>
+            <p class="hint" id="name-hint">As you would like it to appear in the programme.</p>
+            <input type="text" id="name" name="name" autocomplete="name"
+                   aria-describedby="name-hint name-error" required>
+            <p class="error" id="name-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address <span class="req">(required)</span>
+              <span class="visually-hidden">required</span>
+            </label>
+            <p class="hint" id="email-hint">We will use this to follow up. We will not share it.</p>
+            <input type="email" id="email" name="email" autocomplete="email"
+                   inputmode="email" aria-describedby="email-hint email-error" required>
+            <p class="error" id="email-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="country">Country or region <span class="req">(required)</span>
+              <span class="visually-hidden">required</span>
+            </label>
+            <select id="country" name="country" aria-describedby="country-error" required>
+              <option value="">Please choose&hellip;</option>
+              <option value="Taiwan">Taiwan</option>
+              <option value="Japan">Japan</option>
+              <option value="Korea, Republic of">Korea, Republic of</option>
+              <option value="Australia">Australia</option>
+              <option value="China">China</option>
+              <option value="Hong Kong SAR">Hong Kong SAR</option>
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Viet Nam">Viet Nam</option>
+              <option value="Other Asia-Pacific">Other Asia-Pacific (tell us in the notes)</option>
+              <option value="Outside Asia-Pacific">Outside Asia-Pacific</option>
+            </select>
+            <p class="error" id="country-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="organization">Organisation or affiliation <span class="req">(required)</span>
+              <span class="visually-hidden">required</span>
+            </label>
+            <p class="hint" id="org-hint">If you take part independently, write &ldquo;Independent&rdquo;.</p>
+            <input type="text" id="organization" name="organization"
+                   autocomplete="organization"
+                   aria-describedby="org-hint organization-error" required>
+            <p class="error" id="organization-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="role">Role or title <span class="req">(required)</span>
+              <span class="visually-hidden">required</span>
+            </label>
+            <input type="text" id="role" name="role"
+                   autocomplete="organization-title"
+                   aria-describedby="role-error" required>
+            <p class="error" id="role-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="link">Personal or professional link <span class="optional">(optional)</span></label>
+            <p class="hint" id="link-hint">A website, LinkedIn profile, or similar &mdash; helps us understand your work.</p>
+            <input type="url" id="link" name="link" inputmode="url"
+                   placeholder="https://"
+                   aria-describedby="link-hint link-error">
+            <p class="error" id="link-error"></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your proposed session</legend>
+
+          <div class="field">
+            <span class="group-label" id="theme-label">Which theme does it connect to?
+              <span class="req">(required)</span>
+            </span>
+            <div class="choice-list" role="radiogroup"
+                 aria-labelledby="theme-label" aria-describedby="theme-error">
+              <label class="choice"><input type="radio" name="theme" value="Trust &amp; Transparency" required> Trust &amp; Transparency</label>
+              <label class="choice"><input type="radio" name="theme" value="Who Can Use Daily Services"> Who Can Use Daily Services?</label>
+              <label class="choice"><input type="radio" name="theme" value="Caregiving and Life in Old Age"> Caregiving and Life in Old Age</label>
+              <label class="choice"><input type="radio" name="theme" value="Understanding and Being Understood"> Understanding and Being Understood</label>
+              <label class="choice"><input type="radio" name="theme" value="Patches and Rebuilds in Governance"> Patches and Rebuilds in Governance</label>
+              <label class="choice"><input type="radio" name="theme" value="Cross-theme or still deciding"> Cross-theme, or still deciding</label>
+            </div>
+            <p class="error" id="theme-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="title">Working title <span class="req">(required)</span>
+              <span class="visually-hidden">required</span>
+            </label>
+            <p class="hint" id="title-hint">A plain working title is fine &mdash; it does not have to be final.</p>
+            <input type="text" id="title" name="title"
+                   aria-describedby="title-hint title-error" required>
+            <p class="error" id="title-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="description">Short description <span class="req">(required)</span>
+              <span class="visually-hidden">required</span>
+            </label>
+            <p class="hint" id="desc-hint">
+              Roughly 100&ndash;200 words. What is the session about, and what is the
+              concrete case or experience behind it? If you are outside Taiwan,
+              tell us the angle from your own region &mdash; the programme pairs a
+              local case with perspectives from across the Asia-Pacific.
+            </p>
+            <textarea id="description" name="description" rows="6"
+                      aria-describedby="desc-hint description-error" required></textarea>
+            <p class="error" id="description-error"></p>
+          </div>
+
+          <div class="field">
+            <span class="group-label" id="format-label">Preferred format
+              <span class="req">(required)</span>
+            </span>
+            <p class="hint" id="format-hint">Not binding &mdash; it just helps us plan the agenda.</p>
+            <div class="choice-list" role="radiogroup"
+                 aria-labelledby="format-label" aria-describedby="format-hint format-error">
+              <label class="choice"><input type="radio" name="format" value="Panel" required> Panel contributor</label>
+              <label class="choice"><input type="radio" name="format" value="Talk"> Short talk</label>
+              <label class="choice"><input type="radio" name="format" value="Workshop"> Workshop or hands-on session</label>
+              <label class="choice"><input type="radio" name="format" value="Open to discuss"> Open to discuss</label>
+            </div>
+            <p class="error" id="format-error"></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Taking part</legend>
+
+          <div class="field">
+            <span class="group-label" id="attend-label">How would you take part?
+              <span class="req">(required)</span>
+            </span>
+            <div class="choice-list" role="radiogroup"
+                 aria-labelledby="attend-label" aria-describedby="attend-error">
+              <label class="choice"><input type="radio" name="attendance" value="In person" required> In person (Taiwan)</label>
+              <label class="choice"><input type="radio" name="attendance" value="Remote"> Remotely</label>
+              <label class="choice"><input type="radio" name="attendance" value="Either"> Either works for me</label>
+            </div>
+            <p class="error" id="attendance-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="timezone">Your time zone <span class="optional">(optional)</span></label>
+            <p class="hint" id="tz-hint">Helps us schedule across the region. For example: UTC+8, UTC+9.</p>
+            <input type="text" id="timezone" name="timezone"
+                   placeholder="e.g. UTC+8"
+                   aria-describedby="tz-hint">
+          </div>
+
+          <div class="field">
+            <label for="other-languages">Other languages you could also present in
+              <span class="optional">(optional)</span>
+            </label>
+            <p class="hint" id="lang-hint">Sessions run in English, but knowing this helps us plan.</p>
+            <input type="text" id="other-languages" name="other_languages"
+                   aria-describedby="lang-hint">
+          </div>
+
+          <div class="field">
+            <label for="captions">Captioning &mdash; would a particular language help?
+              <span class="optional">(optional)</span>
+            </label>
+            <p class="hint" id="cap-hint">
+              We are exploring live captioning for sessions. This is not a promise
+              yet &mdash; telling us here helps us scope it.
+            </p>
+            <input type="text" id="captions" name="captions"
+                   aria-describedby="cap-hint">
+          </div>
+
+          <div class="field">
+            <label for="access">Access needs <span class="optional">(optional)</span></label>
+            <p class="hint" id="access-hint">
+              Anything we should know so that taking part works for you &mdash;
+              access, scheduling, equipment, or anything else. We would rather
+              hear it now than miss it.
+            </p>
+            <textarea id="access" name="access_needs" rows="3"
+                      aria-describedby="access-hint"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="consent">
+          <legend>Consent</legend>
+
+          <div class="field">
+            <div class="choice">
+              <input type="checkbox" id="consent-english" name="consent_english"
+                     value="yes" aria-describedby="consent-english-error" required>
+              <label for="consent-english">
+                I can present and take part in discussion in English.
+                <span class="req">(required)</span>
+              </label>
+            </div>
+            <p class="error" id="consent-english-error"></p>
+          </div>
+
+          <div class="field">
+            <div class="choice">
+              <input type="checkbox" id="consent-data" name="consent_data"
+                     value="yes" aria-describedby="consent-data-error" required>
+              <label for="consent-data">
+                I agree that ADALS 2026 may store and use the information in this
+                form to plan the event and contact me.
+                <span class="req">(required)</span>
+                <!-- TODO: link this to a real privacy / data-use note before launch. -->
+              </label>
+            </div>
+            <p class="error" id="consent-data-error"></p>
+          </div>
+
+          <div class="field">
+            <div class="choice">
+              <input type="checkbox" id="consent-publish" name="consent_publish"
+                     value="yes" aria-describedby="consent-publish-error" required>
+              <label for="consent-publish">
+                If my session is selected, I agree that my name, role, and session
+                description may appear on the ADALS 2026 website and programme.
+                <span class="req">(required)</span>
+              </label>
+            </div>
+            <p class="error" id="consent-publish-error"></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Anything else</legend>
+          <div class="field">
+            <label for="notes">Notes for the organising team <span class="optional">(optional)</span></label>
+            <p class="hint" id="notes-hint">
+              Questions, context, a co-speaker you would bring, or anything that
+              did not fit above.
+            </p>
+            <textarea id="notes" name="notes" rows="3"
+                      aria-describedby="notes-hint"></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-submit">Submit sign-up</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="doc-footer">
+    <p>ADALS 2026 &middot; Asia-Pacific dialogue on accessibility, ageing, and AI.
+       Questions about the call? Contact the organising team.</p>
+  </footer>
+
+</div>
+
+<script>
+  /* === Theme toggle === */
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    function currentTheme() {
+      var set = document.documentElement.getAttribute('data-theme');
+      if (set) return set;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    function syncPressed() {
+      btn.setAttribute('aria-pressed', currentTheme() === 'dark' ? 'true' : 'false');
+    }
+    syncPressed();
+
+    btn.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('adals-theme', next); } catch (e) { /* ignore */ }
+      syncPressed();
+    });
+  })();
+
+  /* === Accessible form validation ===
+     Native validation is reliable for keyboard and screen readers, but the
+     browser's default bubble is easy to miss. This enhancement, on submit:
+       - finds each invalid control
+       - writes a plain-language message into its linked .error element
+       - sets aria-invalid so screen readers and the CSS pick it up
+       - moves focus to the first invalid control
+       - announces a summary in the role="alert" status region
+     Errors clear as the user corrects each field. */
+  (function () {
+    var form = document.getElementById('speaker-form');
+    if (!form) return;
+    var status = document.getElementById('form-status');
+
+    function errorFor(control) {
+      // Radio groups share one named error element: <name>-error.
+      var base = control.name ? control.name.replace(/_/g, '-') : control.id;
+      return document.getElementById(base + '-error') ||
+             document.getElementById(control.id + '-error');
+    }
+
+    function messageFor(control) {
+      var v = control.validity;
+      if (v.valueMissing) {
+        if (control.type === 'checkbox') return 'Please tick this box to continue.';
+        if (control.type === 'radio') return 'Please choose one option.';
+        if (control.tagName === 'SELECT') return 'Please choose an option.';
+        return 'This field is required.';
+      }
+      if (v.typeMismatch && control.type === 'email') {
+        return 'Please enter a valid email address, for example name@example.com.';
+      }
+      if (v.typeMismatch && control.type === 'url') {
+        return 'Please enter a full web address starting with https://';
+      }
+      return 'Please check this field.';
+    }
+
+    function clearError(control) {
+      var box = errorFor(control);
+      if (box) box.textContent = '';
+      if (control.type === 'radio') {
+        form.querySelectorAll('input[name="' + control.name + '"]').forEach(function (r) {
+          r.removeAttribute('aria-invalid');
+        });
+      } else {
+        control.removeAttribute('aria-invalid');
+      }
+    }
+
+    // Clear a field's error as soon as the user fixes it.
+    form.addEventListener('input', function (e) {
+      if (e.target.willValidate && e.target.checkValidity()) clearError(e.target);
+    });
+    form.addEventListener('change', function (e) {
+      if (e.target.willValidate && e.target.checkValidity()) clearError(e.target);
+    });
+
+    form.addEventListener('submit', function (e) {
+      var invalid = [];
+      var seenRadioGroups = {};
+
+      Array.prototype.forEach.call(form.elements, function (control) {
+        if (!control.willValidate || control.checkValidity()) return;
+        if (control.type === 'radio') {
+          if (seenRadioGroups[control.name]) return;
+          seenRadioGroups[control.name] = true;
+        }
+        invalid.push(control);
+        var box = errorFor(control);
+        if (box) box.textContent = messageFor(control);
+        if (control.type === 'radio') {
+          form.querySelectorAll('input[name="' + control.name + '"]').forEach(function (r) {
+            r.setAttribute('aria-invalid', 'true');
+          });
+        } else {
+          control.setAttribute('aria-invalid', 'true');
+        }
+      });
+
+      if (invalid.length > 0) {
+        e.preventDefault();
+        var n = invalid.length;
+        status.textContent = n === 1
+          ? 'There is 1 field that needs attention. See the highlighted field below.'
+          : 'There are ' + n + ' fields that need attention. See the highlighted fields below.';
+        status.classList.add('is-error');
+        invalid[0].focus();
+      } else {
+        status.textContent = '';
+        status.classList.remove('is-error');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
