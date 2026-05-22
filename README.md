@@ -15,11 +15,12 @@ the host serves `index.html` at the repo root.
 
 ## Before this goes live
 
-1. **Submission endpoint.** The `<form action>` in `index.html` is a Formspree
-   placeholder (`REPLACE_WITH_FORM_ID`). Until it is set, the form does not
-   send anywhere — by design, so it never silently looks like it worked.
-   Options (Formspree / Google Apps Script / Tally) are documented in a
-   comment directly above the `<form>` tag.
+1. **Submission endpoint.** The form posts to a Google Apps Script that
+   appends each submission as a row in a Google Sheet. Deploy
+   `apps-script/Code.gs` (step-by-step in that file's header comment),
+   then paste the resulting Web app URL into `index.html` as the
+   `<form action>`, replacing `PASTE_APPS_SCRIPT_EXEC_URL`. Until the real
+   URL is set the form refuses to submit — by design.
 2. **Privacy / data-use note.** The data-consent checkbox refers to storing
    and using applicant data but links nowhere yet. Add a real privacy note
    (see the `TODO` comment on that checkbox).

@@ -257,6 +257,15 @@
     font-weight: 600;
   }
 
+  /* Honeypot field — off-screen; people and screen readers never reach it. */
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
   fieldset {
     border: 1px solid var(--rule);
     border-radius: 6px;
@@ -496,33 +505,30 @@
 
       <!--
         ============================================================
-        SUBMISSION ENDPOINT — NEEDS WIRING BEFORE THIS PAGE GOES LIVE
+        SUBMISSION ENDPOINT — Google Apps Script + Google Sheet
         ============================================================
-        The form below is complete, valid, accessible markup, but it
-        does not yet send anywhere. Pick one:
+        Replace PASTE_APPS_SCRIPT_EXEC_URL below with the Web app URL
+        from deploying apps-script/Code.gs. Setup steps are in that
+        file's header comment, and in the repo README.
 
-        1. Formspree (fastest, zero backend):
-           - Create a form at https://formspree.io
-           - Replace REPLACE_WITH_FORM_ID in the action attribute below
-           - Optionally add a hidden field:
-             <input type="hidden" name="_next" value="https://.../thank-you.html">
-
-        2. Google Apps Script (data lands in a Google Sheet you control;
-           best fit if you may later move to netiCRM — see vault doc
-           speaker-form-schema.md). Point action= at the deployed
-           Web App URL and keep method="POST".
-
-        3. Tally / Jotform: skip this form and embed/link theirs instead.
-
-        Until an endpoint is set, submitting will fail. That is intended —
-        it should not silently look like it worked.
+        Until the real URL is set the form refuses to submit (the JS
+        checks for the PASTE_ placeholder) — it never silently looks
+        like it worked.
         ============================================================
       -->
       <form id="speaker-form" method="POST"
-            action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+            action="PASTE_APPS_SCRIPT_EXEC_URL"
             novalidate>
 
         <div id="form-status" class="form-status" role="alert" aria-live="assertive"></div>
+
+        <!-- Honeypot: off-screen, hidden from assistive tech and the tab
+             order — people never fill it, bots do. Checked in Code.gs. -->
+        <div class="hp" aria-hidden="true">
+          <label for="hp_company">Company (leave this field blank)</label>
+          <input type="text" id="hp_company" name="hp_company"
+                 tabindex="-1" autocomplete="off">
+        </div>
 
         <fieldset>
           <legend>About you</legend>
@@ -779,6 +785,7 @@
 
         <button type="submit" class="btn-submit">Submit sign-up</button>
       </form>
+      <iframe name="cfs-sink" id="cfs-sink" title="Form submission" hidden></iframe>
     </section>
 
   </main>
@@ -827,6 +834,38 @@
     var form = document.getElementById('speaker-form');
     if (!form) return;
     var status = document.getElementById('form-status');
+    var submitBtn = form.querySelector('.btn-submit');
+    var sink = document.getElementById('cfs-sink');
+    var submitted = false;
+    var failTimer = null;
+
+    /* Progressive enhancement: post into a hidden iframe so the page
+       does not navigate away; show an in-page thank-you on response.
+       Without JS the form posts normally and the Apps Script returns
+       its own thank-you page — still works. */
+    if (sink) {
+      form.setAttribute('target', 'cfs-sink');
+      sink.addEventListener('load', function () {
+        if (submitted) showThankYou();
+      });
+    }
+
+    // Built with createElement / textContent — no innerHTML.
+    function showThankYou() {
+      if (failTimer) clearTimeout(failTimer);
+      var section = document.getElementById('h-form').parentNode;
+      while (section.firstChild) section.removeChild(section.firstChild);
+      var h = document.createElement('h2');
+      h.id = 'h-form';
+      h.setAttribute('tabindex', '-1');
+      h.textContent = 'Thank you';
+      var p = document.createElement('p');
+      p.textContent = 'Your speaker sign-up for ADALS 2026 has been '
+        + 'received. The organising team will be in touch.';
+      section.appendChild(h);
+      section.appendChild(p);
+      h.focus();
+    }
 
     function errorFor(control) {
       // Radio groups share one named error element: <name>-error.
@@ -873,6 +912,17 @@
     });
 
     form.addEventListener('submit', function (e) {
+      // Guard: refuse to submit until a real backend URL is wired in.
+      var action = form.getAttribute('action') || '';
+      if (action.indexOf('PASTE_') !== -1 || action === '') {
+        e.preventDefault();
+        status.textContent =
+          'This form is not connected to a backend yet. See '
+          + 'apps-script/Code.gs in the repo for the setup steps.';
+        status.classList.add('is-error');
+        return;
+      }
+
       var invalid = [];
       var seenRadioGroups = {};
 
@@ -905,6 +955,22 @@
       } else {
         status.textContent = '';
         status.classList.remove('is-error');
+        // Valid — let the native submit proceed into the hidden iframe.
+        submitted = true;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending…';
+        }
+        failTimer = setTimeout(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit sign-up';
+          }
+          status.textContent =
+            'That is taking longer than expected. Please check your '
+            + 'connection and try submitting again.';
+          status.classList.add('is-error');
+        }, 20000);
       }
     });
   })();
