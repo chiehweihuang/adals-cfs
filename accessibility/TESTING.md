@@ -14,7 +14,7 @@
 
 ## 不在這裡測的：Google 表單
 
-投稿用的 Google Form 不是我們的 HTML，是 Google 託管的。我們改不到它的標記，也無法在它上面跑 axe / Lighthouse / WAVE，所以**表單不列入這套流程**，它的無障礙以 Google 平台本身為準。我們能做的是把表單題目寫清楚、必填標示明確，其餘交給 Google。
+投稿用的 Google Form 是 Google 託管的，不是我們的 HTML。我們拿不到它的標記，上面那些工具（WAVE / Lighthouse / axe）也跑不了它。**現況：表單不在這套流程裡，我們沒有、也無法用這套工具驗證它的無障礙；它本身的無障礙是靠 Google Forms 平台提供的。** 換句話說，這一塊我們目前是信任 Google，沒有自己驗過。
 
 ## 兩個共同前提（每一頁都適用）
 
