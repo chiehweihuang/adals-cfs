@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Call for Speakers — ADALS 2026, the APAC Digital Inclusion and Accessibility Leadership Summit on AI, aging, and accessibility. Taipei, 17–18 September 2026. Sessions in English.">
+<meta name="description" content="Call for Speakers — ADALS 2026, the APAC Digital Inclusion and Accessibility Leadership Summit on AI, Aging, and Accessibility. Taipei, 17–18 September 2026. Sessions in English.">
 <title>Call for Speakers — ADALS 2026</title>
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,10 +150,7 @@
   .masthead-inner {
     max-width: 48rem;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    position: relative;
     padding: 0.7rem clamp(1.25rem, 4vw, 2.5rem);
   }
   .btn-toggle {
@@ -177,6 +174,10 @@
   /* Toggle sits on the Navy masthead — on-navy styling that holds in both page
      themes (the base var()-driven colors would blend on Navy). */
   .masthead .btn-toggle {
+    position: absolute;
+    top: 0.6rem;
+    right: clamp(1.25rem, 4vw, 2.5rem);
+    z-index: 2;
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.45);
     color: #F7F8F8;
@@ -203,14 +204,14 @@
      (light-ink) variant, so no theme swap. Fluid height: larger on desktop,
      scales down on phones, capped so the band stays a sensible height. */
   .org-logo {
-    display: inline-flex;
+    display: block;
     line-height: 0;
     border-radius: 4px;
   }
   .org-logo img {
-    height: clamp(40px, 5.5vw, 56px);
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
   }
   .org-logo:focus-visible {
     outline: 3px solid #F8B62D;   /* Gold reads on Navy in both modes (6.58:1) */
@@ -467,6 +468,21 @@
     color: #FFFFFF;
     border-color: var(--accent);
   }
+  /* In dark mode --accent is Gold, so the base hover would be white-on-Gold
+     (fails contrast, and the background does not visibly change). Use a deeper
+     Gold + near-black ink, which stays readable (>7:1) and on Navy stands out. */
+  :root[data-theme="dark"] .btn-submit:hover {
+    background: #E0A800;
+    color: #231815;
+    border-color: #E0A800;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .btn-submit:hover {
+      background: #E0A800;
+      color: #231815;
+      border-color: #E0A800;
+    }
+  }
   .btn-submit:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 3px;
@@ -567,7 +583,7 @@
 <header class="masthead">
   <div class="masthead-inner">
     <a class="org-logo" href="https://apac-aia.org">
-      <img src="aia-logo-dark.svg" alt="APAC Authentic Inclusion Association" width="256" height="48">
+      <img src="apac-aia-header.png" alt="APAC Authentic Inclusion Association — 亞太包容創新協會" width="1600" height="260">
     </a>
     <button class="btn-toggle" id="theme-toggle" type="button" aria-pressed="false">
       <span aria-hidden="true">&#9680;</span>
@@ -583,12 +599,12 @@
     <div class="doc-header">
       <p class="eyebrow">ADALS 2026 &middot; APAC Digital Inclusion &amp; Accessibility Leadership Summit</p>
       <h1>Call for Speakers</h1>
-      <p class="lead">We are inviting practitioners from across the Asia-Pacific to speak at ADALS 2026, the first edition of a leadership summit on accessibility, aging, and AI.</p>
+      <p class="lead">We are inviting practitioners from across the Asia-Pacific to speak at ADALS 2026, the first edition of a leadership summit on Accessibility, Aging, and AI.</p>
     </div>
 
     <section aria-labelledby="h-about-summit">
       <h2 id="h-about-summit">About ADALS 2026</h2>
-      <p>ADALS 2026 is the first edition of the APAC Digital Inclusion and Accessibility Leadership Summit: a leadership-level gathering at the meeting point of AI, aging, and accessibility. It is convened by the APAC Authentic Inclusion Association (亞太包容創新協會) and held in Taipei on 17 and 18 September 2026.</p>
+      <p>ADALS 2026 is the first edition of the APAC Digital Inclusion and Accessibility Leadership Summit: a leadership-level gathering at the meeting point of AI, Aging, and Accessibility. It is convened by the APAC Authentic Inclusion Association (亞太包容創新協會) and held in Taipei on 17 and 18 September 2026.</p>
       <p><strong>Why now.</strong> The EU&rsquo;s European Accessibility Act came into force in June 2025, putting immediate pressure on Asia-Pacific exporters. WCAG 2.2 is the current standard and WCAG 3.0 is still being written, yet no regional forum is turning either into local practice. And Japan, Taiwan, and South Korea are among the world&rsquo;s fastest-aging societies, where technology-enabled accessibility, such as AI, is becoming a necessity rather than an option. ADALS exists to give the region its own table for these questions.</p>      <p><strong>Who it is for.</strong> ADALS is being designed for senior leaders from across the Asia-Pacific: technology and product executives, policymakers, hardware manufacturers, accessibility professionals, and people from universities and the non-profit sector. It is a working summit aimed at practice and decisions, not a compliance workshop.</p>
       <p><strong>What we are looking for.</strong> Keynote sessions anchor each day. The open program of talks, panels, and workshops is where we want voices from across the region: practitioners with a real case to share. If that is you, we would like to hear from you.</p>    </section>
 
@@ -615,7 +631,7 @@
         <li><strong>Thank you for your expression of interest.</strong> We read every proposal and will be in touch to talk through fit and format before anything is confirmed.</li>
       </ul>
 
-      <p>The program is built around five themes, and every proposal should sit somewhere in AI, aging, and accessibility, or where they meet. Your session should connect to one to three of them:</p>
+      <p>The program is built around five themes, and every proposal should sit somewhere in AI, Aging, and Accessibility, or where they meet. Your session should connect to one to three of them:</p>
       <ol class="themes" aria-label="The five themes">
         <li><strong>Trust &amp; Transparency</strong> &mdash; AI decisions, explainability, accountability, and the right to challenge automated systems.</li>
         <li><strong>Who Can Use Daily Services?</strong> &mdash; access to everyday services (banking, health, transport, public services, ID), and the barriers that shut people out.</li>
@@ -669,7 +685,7 @@
   </main>
 
   <footer class="doc-footer">
-    <p>ADALS 2026 &middot; Asia-Pacific dialogue on accessibility, aging, and AI.<br>
+    <p>ADALS 2026 &middot; Asia-Pacific dialogue on Accessibility, Aging, and AI.<br>
        Convened by <a href="https://apac-aia.org/">APAC Authentic Inclusion Association</a> (亞太包容創新協會).<br>
        Questions about the call for speakers? Email <a href="mailto:claire.chang@apac-aia.org">claire.chang@apac-aia.org</a>.</p>
   </footer>

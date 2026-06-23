@@ -1,7 +1,7 @@
 # ADALS 2026 — Call for Speakers
 
 Public landing page for the ADALS 2026 call for speakers, a practitioner-level
-Asia-Pacific dialogue on accessibility, aging, and AI.
+Asia-Pacific dialogue on Accessibility, Aging, and AI.
 
 Standalone, deliberately separate from the internal `adals-2026` planning site:
 this page is public; the planning site stays private.
