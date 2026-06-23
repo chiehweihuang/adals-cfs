@@ -493,13 +493,13 @@
     position: fixed;
     right: clamp(1rem, 3vw, 2rem);
     bottom: clamp(1rem, 3vw, 2rem);
-    width: 72px;
-    height: 72px;
+    width: clamp(48px, 10vw, 72px);
+    height: clamp(48px, 10vw, 72px);
     border-radius: 50%;
     border: 2px solid var(--accent);
     background: var(--accent);
     color: #FFFFFF;
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 3vw, 2rem);
     line-height: 1;
     cursor: pointer;
     display: flex;
@@ -513,6 +513,11 @@
     z-index: 50;
   }
   .to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+  .to-top:hover,
+  .to-top:focus-visible {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  }
   .to-top:hover { background: var(--accent-2); border-color: var(--accent-2); }
   .to-top:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
   /* Dark mode: --accent is Gold, so use near-black ink on the Gold button. */
