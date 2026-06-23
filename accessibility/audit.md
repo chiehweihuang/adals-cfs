@@ -24,23 +24,31 @@ names are all present.
 
 | Category | Score |
 |---|---|
-| Performance | 63 |
+| Performance | 86 |
 | Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
 
-Core Web Vitals: Total Blocking Time 0 ms, Cumulative Layout Shift 0 (both perfect).
-First Contentful Paint / Largest Contentful Paint / Speed Index are about 6.0 s.
+Core Web Vitals: Total Blocking Time 0 ms, Cumulative Layout Shift 0.001, both well
+inside "good". First Contentful Paint and Largest Contentful Paint 3.0 s, Speed Index
+4.4 s.
 
-Reading the Performance score: it reflects Lighthouse's harsh mobile preset (throttled
-to slow 4G and a 4x slower CPU); a desktop run typically scores 15 to 25 points higher.
-The ~6 s paint times come from render-blocking web fonts, mainly the large CJK families
-(Noto Sans TC and Noto Serif TC). TBT 0 ms and CLS 0 mean nothing blocks the main
-thread and nothing shifts during load. Optional speed-ups, none of them correctness
-issues: `font-display: swap`, a `preconnect` to the font CDN, and subsetting the CJK
-fonts. Accessibility, Best Practices, and SEO are all 100.
+Performance history: an earlier run scored 63 with FCP/LCP at 6.0 s. The Google Fonts
+stylesheets were render-blocking, and the Traditional-Chinese families (Noto Sans/Serif
+TC) are large. The fix: load the font CSS asynchronously (`media="print"` + `onload`,
+with a `<noscript>` fallback) so it no longer blocks paint, and subset the CJK request
+via `&text=` to the only Chinese on the page (the association name), cutting that
+download from hundreds of KB to a few KB. Render-blocking resources are now zero and the
+paint metrics roughly halved (63 to 86). This is still the harsh mobile preset; a desktop
+run scores higher again.
 
 Full report: `lighthouse.html` (open in a browser).
+
+## Answer Engine Optimization (AEO) and structured data
+
+Present in the page head: a `canonical` link; Open Graph and Twitter Card tags for share
+previews; and Schema.org JSON-LD describing the `Event` (dates, in-person Taipei,
+scheduled) and its organizing `Organization`.
 
 ## Re-running
 
