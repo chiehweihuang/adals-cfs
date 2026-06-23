@@ -5,12 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Call for Speakers: ADALS 2026, the APAC Digital Inclusion and Accessibility Leadership Summit on Accessibility, Aging, and AI. Taipei, 17 and 18 September 2026. Sessions in English.">
 <title>Call for Speakers: ADALS 2026</title>
+<link rel="canonical" href="https://speakers.apac-aia.org/">
 <link rel="icon" href="data:,">
+
+<!-- Open Graph / Twitter Card: link previews when the page is shared -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ADALS 2026">
+<meta property="og:url" content="https://speakers.apac-aia.org/">
+<meta property="og:title" content="Call for Speakers: ADALS 2026">
+<meta property="og:description" content="Speak at ADALS 2026 in Taipei, 17 and 18 September: an Asia-Pacific dialogue on Accessibility, Aging, and AI. Sessions in English.">
+<meta property="og:image" content="https://speakers.apac-aia.org/apac-aia-header.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Call for Speakers: ADALS 2026">
+<meta name="twitter:description" content="Speak at ADALS 2026 in Taipei, 17 and 18 September: an Asia-Pacific dialogue on Accessibility, Aging, and AI. Sessions in English.">
+<meta name="twitter:image" content="https://speakers.apac-aia.org/apac-aia-header.png">
+
+<!-- Schema.org Event + organizing Organization (AEO / rich results) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "ADALS 2026: APAC Digital Inclusion and Accessibility Leadership Summit",
+  "description": "A practitioner-level Asia-Pacific dialogue on Accessibility, Aging, and AI.",
+  "startDate": "2026-09-17",
+  "endDate": "2026-09-18",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "Taipei",
+    "address": { "@type": "PostalAddress", "addressLocality": "Taipei", "addressCountry": "TW" }
+  },
+  "image": "https://speakers.apac-aia.org/apac-aia-header.png",
+  "url": "https://speakers.apac-aia.org/",
+  "organizer": {
+    "@type": "Organization",
+    "name": "APAC Authentic Inclusion Association",
+    "alternateName": "亞太包容創新協會",
+    "url": "https://apac-aia.org"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Brand-mandated typography: Inter for Latin, Noto Sans TC / Noto Serif TC for Chinese.
-     IBM Plex Mono retained for monospace eyebrows and counters. -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Brand-mandated typography: Inter for Latin, Noto Sans TC / Noto Serif TC for Chinese,
+     IBM Plex Mono for monospace eyebrows and counters. Loaded async (media=print onload) so
+     fonts never block first paint; display=swap shows fallback text until they arrive. The
+     CJK request is subset (&text=) to the only Chinese on the page, the association name.
+     ponytail: if more Chinese is ever shown, add those characters to &text= or it falls back. -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&text=亞太包容創新協會&display=swap">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&text=亞太包容創新協會&display=swap">
+</noscript>
 
 <!-- Set theme before paint to avoid a flash of the wrong theme -->
 <script>
@@ -636,7 +687,7 @@
 <header class="masthead">
   <div class="masthead-inner">
     <a class="org-logo" href="https://apac-aia.org">
-      <img src="apac-aia-header.png" alt="APAC Authentic Inclusion Association (亞太包容創新協會)" width="1600" height="260">
+      <img src="apac-aia-header.png" alt="APAC Authentic Inclusion Association (亞太包容創新協會)" width="1600" height="260" fetchpriority="high">
     </a>
     <button class="btn-toggle" id="theme-toggle" type="button" aria-pressed="false">
       <span aria-hidden="true">&#9680;</span>
