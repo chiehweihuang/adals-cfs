@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" as="image" href="apac-aia-header.webp" type="image/webp" fetchpriority="high">
 <meta name="description" content="Call for Speakers: ADALS 2026, the APAC Digital Inclusion and Accessibility Leadership Summit on Accessibility, Aging, and AI. Taipei, 17 and 18 September 2026. Sessions in English.">
 <title>Call for Speakers: ADALS 2026</title>
 <link rel="canonical" href="https://speakers.apac-aia.org/">
@@ -143,12 +144,24 @@
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
+  /* Metric-matched fallback for Inter: shown during the brief font-swap window so text
+     does not shift when Inter loads, which kills the font-swap CLS. Values are the Inter
+     metrics expressed over a local Arial fallback. */
+  @font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial');
+    ascent-override: 90.44%;
+    descent-override: 22.52%;
+    line-gap-override: 0%;
+    size-adjust: 107.12%;
+  }
+
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
     /* Brand stack: Inter for Latin, Noto Sans TC for CJK fallback */
-    font-family: 'Inter', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+    font-family: 'Inter', 'Inter Fallback', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
     font-size: clamp(1rem, 0.92rem + 0.4vw, 1.0625rem);
     line-height: 1.7;
     letter-spacing: 0.01em;
@@ -263,6 +276,7 @@
     line-height: 0;
     border-radius: 4px;
   }
+  .org-logo picture { display: block; }
   .org-logo img {
     width: 100%;
     height: auto;
@@ -283,7 +297,7 @@
   }
   h1 {
     /* Brand: Latin headings use Inter heavy; Chinese chars fall through to Noto Serif TC SemiBold */
-    font-family: 'Inter', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
+    font-family: 'Inter', 'Inter Fallback', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
     font-weight: 700;
     color: var(--accent);            /* Navy — brand primary on Off-White = 11.09:1 */
     font-size: clamp(1.875rem, 1.4rem + 1.8vw, 2.625rem);
@@ -292,7 +306,7 @@
     margin: 0 0 1rem;
   }
   .lead {
-    font-family: 'Inter', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
+    font-family: 'Inter', 'Inter Fallback', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
     font-size: clamp(1.0625rem, 0.95rem + 0.55vw, 1.1875rem);
     line-height: 1.6;
     color: var(--accent);
@@ -311,7 +325,7 @@
   strong { font-weight: 600; }
 
   h2 {
-    font-family: 'Inter', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
+    font-family: 'Inter', 'Inter Fallback', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
     font-weight: 700;
     color: var(--accent);            /* Navy headings */
     font-size: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);
@@ -385,7 +399,7 @@
     background: var(--surface);
   }
   legend {
-    font-family: 'Inter', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
+    font-family: 'Inter', 'Inter Fallback', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--accent);
@@ -506,7 +520,7 @@
   .btn-submit {
     display: inline-block;
     text-decoration: none;
-    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    font-family: 'Inter', 'Inter Fallback', 'Noto Sans TC', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     color: var(--cta-text);
@@ -651,7 +665,7 @@
 
   /* h3 — used in Travel/honoraria/attendance subsections */
   h3 {
-    font-family: 'Inter', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
+    font-family: 'Inter', 'Inter Fallback', 'Noto Serif TC', 'PingFang TC', Georgia, serif;
     font-weight: 600;
     color: var(--accent);
     font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
@@ -687,7 +701,10 @@
 <header class="masthead">
   <div class="masthead-inner">
     <a class="org-logo" href="https://apac-aia.org">
-      <img src="apac-aia-header.png" alt="APAC Authentic Inclusion Association (亞太包容創新協會)" width="1600" height="260" fetchpriority="high">
+      <picture>
+        <source srcset="apac-aia-header.webp" type="image/webp">
+        <img src="apac-aia-header.png" alt="APAC Authentic Inclusion Association (亞太包容創新協會)" width="1600" height="260" fetchpriority="high">
+      </picture>
     </a>
     <button class="btn-toggle" id="theme-toggle" type="button" aria-pressed="false">
       <span aria-hidden="true">&#9680;</span>
