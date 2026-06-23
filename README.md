@@ -1,48 +1,53 @@
-# ADALS 2026 — Call for Speakers
+# ADALS 2026 Call for Speakers
 
 Public landing page for the ADALS 2026 call for speakers, a practitioner-level
 Asia-Pacific dialogue on Accessibility, Aging, and AI.
 
-Standalone, deliberately separate from the internal `adals-2026` planning site:
-this page is public; the planning site stays private.
+Live at **https://speakers.apac-aia.org**. Standalone, deliberately separate from
+the internal `adals-2026` planning site: this page is public; the planning site
+stays private.
 
 ## Architecture
 
-- **This repo** — a single static landing page (`index.html` + `aia-logo-dark.svg`).
-  No build step, no dependencies. Served at the repo root by any static host; set
-  up here for **GitHub Pages** with a custom domain via the `CNAME` file
-  (`cfs.apac-aia.org`).
+- **This repo** — a single static landing page (`index.html` plus the masthead
+  image `apac-aia-header.png`). No build step, no dependencies. Served at the repo
+  root by **GitHub Pages** with a custom domain via the `CNAME` file
+  (`speakers.apac-aia.org`).
 - **Submissions** — handled by a separate **Google Form**, not by this page. The
-  page ends with an "Apply to speak" button linking to that form; responses land
-  in a private Google Drive folder. No applicant data ever touches this repo.
+  page's "Apply to speak" button links to that form; responses land in a private
+  Google Drive folder. No applicant data ever touches this repo.
 
-## Before it goes live
+## Closing the call
 
-1. **Form URL.** Build the Google Form, then replace `PASTE_GOOGLE_FORM_URL` in
-   `index.html` (the Apply button) with its published URL.
-2. **Custom domain.** Point `cfs.apac-aia.org` at GitHub Pages: add a CNAME record
-   at the registrar (GoDaddy) for the `cfs` subdomain → `<account>.github.io`. The
-   `CNAME` file in this repo tells Pages which domain to serve.
+Both the form and the page close automatically at the deadline
+(`2026-09-01T00:00:00+08:00`):
 
-## Closing / reusing each cycle
+- **Google Form** — its bound Apps Script closes it at that time
+  (`setAcceptingResponses(false)` plus a custom closed message that keeps the
+  contact email), via a time-based trigger.
+- **Landing page** — a script in `index.html` flips the Apply button to a "Call
+  closed" state and reveals a closed-call message at the same instant. The footer
+  contact stays in both states. No-JS visitors still reach the form, which shows
+  its own closed message.
 
-The call is rolling and reused year to year (same repo, same URL):
+To move the date, update both the Apps Script close time and the `closeAt`
+constant in `index.html`.
 
-- **Close** — set the Google Form to stop accepting responses, and swap the Apply
-  button for a "Submissions are closed" notice, then push.
-- **Reopen** — restore the Apply button with the new year's form URL, update the
-  dates and themes, push. Optionally `git tag <year>` to snapshot each cycle.
+## Reusing each cycle
+
+Reused year to year (same repo, same URL): point the Apply button at the new
+year's form URL, update the dates, themes, and the `closeAt` deadline, then push.
+Optionally `git tag <year>` to snapshot each cycle.
 
 ## Accessibility
 
-Built against WCAG 2.2 AA using the Beacon design guide: semantic structure,
-keyboard-operable, screen-reader-labeled, light/dark theme, reflows at 320px.
-Submission itself now runs through a Google Form, which carries its own
-accessibility; this page is the static, branded wrapper. Before a launch, do a
-keyboard-only walkthrough and one screen-reader pass of the page.
+Built against WCAG 2.2 AA: semantic structure, keyboard-operable,
+screen-reader-labeled, light/dark theme, reflows at 320px. Submission runs through
+a Google Form, which carries its own accessibility; this page is the static,
+branded wrapper.
 
 ## Design
 
-Visual system (colors, typography, light/dark theme) matches the ADALS 2026
-brand so the page reads as part of the same event. English-primary: ADALS
-sessions run in English.
+Visual system (colors, typography, light/dark theme) matches the ADALS 2026 brand
+so the page reads as part of the same event. English-primary: ADALS sessions run
+in English.
