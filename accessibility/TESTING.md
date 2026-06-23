@@ -25,6 +25,16 @@
 
 下面工具的範例網址用主頁，**實際測哪一頁，就把網址換成那頁的**。
 
+## 這些提醒（Alert）是預期的，不用慌
+
+工具會丟一些「Alert / 提醒」，那是「建議你看一下」不是錯誤。這頁目前已經確認過、不用改的有：
+
+- **WAVE「Possible heading」**：被當成可能是標題的樣式文字（例如最上面那行 eyebrow 小標）。是刻意的樣式，不是漏掉的標題。
+- **WAVE「Noscript element」**：字型的 no-JS 備援 `<noscript>`。是刻意保留的退路。
+- **ANDI 或焦點類工具「Focusable element is not in keyboard tab order」（出現在 `<main>` 上）**：那是「Skip to main content」跳過連結的目標。`<main>` 要有 `tabindex="-1"` 才能接住 skip link 的焦點，它本來就不該被 Tab 停留。正確、必要，不用改。
+
+看到 **Error** 才是真的要修；**Alert** 先對照這張清單，在清單上的就放著。
+
 ---
 
 ## 1. WAVE（最簡單，先測這個）
