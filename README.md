@@ -1,45 +1,48 @@
 # ADALS 2026 — Call for Speakers
 
-Public speaker sign-up page for ADALS 2026, a practitioner-level Asia-Pacific
-dialogue on accessibility, ageing, and AI.
+Public landing page for the ADALS 2026 call for speakers, a practitioner-level
+Asia-Pacific dialogue on accessibility, aging, and AI.
 
-This is a **standalone repo**, deliberately separate from the internal
-`adals-2026` planning site: this page is public and must stay publicly
-reachable, whereas the planning site can sit behind access control.
+Standalone, deliberately separate from the internal `adals-2026` planning site:
+this page is public; the planning site stays private.
 
-## What this is
+## Architecture
 
-A single static page — `index.html`. No build step, no dependencies.
-Deployable as-is to any static host (Cloudflare Pages, GitHub Pages, Netlify):
-the host serves `index.html` at the repo root.
+- **This repo** — a single static landing page (`index.html` + `aia-logo-dark.svg`).
+  No build step, no dependencies. Served at the repo root by any static host; set
+  up here for **GitHub Pages** with a custom domain via the `CNAME` file
+  (`cfs.apac-aia.org`).
+- **Submissions** — handled by a separate **Google Form**, not by this page. The
+  page ends with an "Apply to speak" button linking to that form; responses land
+  in a private Google Drive folder. No applicant data ever touches this repo.
 
-## Before this goes live
+## Before it goes live
 
-1. **Submission endpoint.** The form posts to a Google Apps Script that
-   appends each submission as a row in a Google Sheet. Deploy
-   `apps-script/Code.gs` (step-by-step in that file's header comment),
-   then paste the resulting Web app URL into `index.html` as the
-   `<form action>`, replacing `PASTE_APPS_SCRIPT_EXEC_URL`. Until the real
-   URL is set the form refuses to submit — by design.
-2. **Privacy / data-use note.** The data-consent checkbox refers to storing
-   and using applicant data but links nowhere yet. Add a real privacy note
-   (see the `TODO` comment on that checkbox).
-3. **Contact.** The footer mentions contacting the organising team but has no
-   actual link. Add one.
+1. **Form URL.** Build the Google Form, then replace `PASTE_GOOGLE_FORM_URL` in
+   `index.html` (the Apply button) with its published URL.
+2. **Custom domain.** Point `cfs.apac-aia.org` at GitHub Pages: add a CNAME record
+   at the registrar (GoDaddy) for the `cfs` subdomain → `<account>.github.io`. The
+   `CNAME` file in this repo tells Pages which domain to serve.
+
+## Closing / reusing each cycle
+
+The call is rolling and reused year to year (same repo, same URL):
+
+- **Close** — set the Google Form to stop accepting responses, and swap the Apply
+  button for a "Submissions are closed" notice, then push.
+- **Reopen** — restore the Apply button with the new year's form URL, update the
+  dates and themes, push. Optionally `git tag <year>` to snapshot each cycle.
 
 ## Accessibility
 
-Built against WCAG 2.2 AA using the Beacon design guide. Native HTML form,
-fully keyboard-operable, screen-reader-labelled, light/dark theme, reflows at
-320px. The automated baseline is clean of warnings.
-
-A score is a machine baseline, not a certificate. Before launch, do a
-keyboard-only walkthrough and one screen-reader pass (NVDA, VoiceOver, or
-TalkBack) of the full sign-up flow.
+Built against WCAG 2.2 AA using the Beacon design guide: semantic structure,
+keyboard-operable, screen-reader-labeled, light/dark theme, reflows at 320px.
+Submission itself now runs through a Google Form, which carries its own
+accessibility; this page is the static, branded wrapper. Before a launch, do a
+keyboard-only walkthrough and one screen-reader pass of the page.
 
 ## Design
 
-Visual system (colours, typography, light/dark theme) matches the ADALS 2026
-site so the page reads as part of the same event. The page is English-primary:
-ADALS sessions run in English, so the pan-Asia-Pacific speaker audience is
-addressed in English.
+Visual system (colors, typography, light/dark theme) matches the ADALS 2026
+brand so the page reads as part of the same event. English-primary: ADALS
+sessions run in English.
