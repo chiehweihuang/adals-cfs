@@ -90,6 +90,6 @@ axe 是 Deque 出的無障礙檢測引擎，業界常用。
 
 ---
 
-測完把結果記到同資料夾的 `audit.md`，讓每一頁都有留下紀錄。
+測完把結果記到同資料夾的 `audit.md`，讓每一頁都有留下紀錄。歷次的完整結果（Lighthouse 報告、WAVE、摘要）都整理在無障礙結果頁：https://speakers.apac-aia.org/accessibility/
 
 <!-- writing-harness: S0/S1/S2 ok 2026-06-24 -->
