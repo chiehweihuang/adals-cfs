@@ -24,23 +24,37 @@
   }
   .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
   figure { margin: 0; }
-  figure a { display: block; }
-  img {
-    width: 100%; height: auto; display: block;
-    border: 1px solid #B7C0CB; border-radius: 6px;
-  }
-  figure a:focus-visible img { outline: 3px solid #003B5C; outline-offset: 2px; }
-  figcaption {
-    font-size: 0.85rem; color: #5D5853; margin-top: 0.4rem; text-align: center;
-  }
+  .thumb { display: block; cursor: zoom-in; border-radius: 6px; }
+  .thumb:focus-visible { outline: 3px solid #003B5C; outline-offset: 3px; }
+  img { width: 100%; height: auto; display: block; border: 1px solid #B7C0CB; border-radius: 6px; }
+  figcaption { font-size: 0.85rem; color: #5D5853; margin-top: 0.4rem; text-align: center; }
   @media (max-width: 34rem) { .pair { grid-template-columns: 1fr; } }
+
+  /* Lightbox */
+  .lb {
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88);
+    display: none; align-items: center; justify-content: center; padding: 2.5rem 1rem;
+    z-index: 1000;
+  }
+  .lb.open { display: flex; }
+  .lb img { max-width: 96vw; max-height: 84vh; width: auto; height: auto; border-radius: 4px; box-shadow: 0 6px 40px rgba(0, 0, 0, 0.5); }
+  .lb-close {
+    position: fixed; top: 1rem; right: 1rem; width: 52px; height: 52px;
+    border-radius: 50%; border: 2px solid #fff; background: rgba(0, 0, 0, 0.55);
+    color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lb-close:hover { background: rgba(0, 0, 0, 0.8); }
+  .lb-close:focus-visible { outline: 3px solid #F8B62D; outline-offset: 3px; }
+  .lb-cap { position: fixed; left: 0; right: 0; bottom: 1rem; text-align: center; color: #fff; font-size: 0.9rem; padding: 0 1rem; }
 </style>
 </head>
 <body>
   <h1>Vision simulation</h1>
   <p>The <a href="https://speakers.apac-aia.org">ADALS 2026 Call for Speakers</a>
      page under simulated vision conditions, in light and dark mode, captured with
-     CSS / SVG filters over the live page. Click any image for full size.</p>
+     CSS / SVG filters over the live page. Click any image to enlarge (press
+     <kbd>Esc</kbd> or the &times; to close).</p>
 
   <div class="note">The page conveys meaning by <strong>lightness contrast</strong>
     (Navy vs Off-White, near-black text), not by hue &mdash; so every
@@ -51,49 +65,96 @@
   <section class="cond">
     <h2>Normal (no filter)</h2>
     <div class="pair">
-      <figure><a href="normal-light.png"><img src="normal-light.png" alt="Call for Speakers page, normal vision, light mode."></a><figcaption>Light mode</figcaption></figure>
-      <figure><a href="normal-dark.png"><img src="normal-dark.png" alt="Call for Speakers page, normal vision, dark mode."></a><figcaption>Dark mode</figcaption></figure>
+      <figure><a class="thumb" href="normal-light.png"><img src="normal-light.png" alt="Call for Speakers page, normal vision, light mode."></a><figcaption>Light mode</figcaption></figure>
+      <figure><a class="thumb" href="normal-dark.png"><img src="normal-dark.png" alt="Call for Speakers page, normal vision, dark mode."></a><figcaption>Dark mode</figcaption></figure>
     </div>
   </section>
 
   <section class="cond">
     <h2>AMD &mdash; macular degeneration (blur + reduced contrast + central scotoma)</h2>
     <div class="pair">
-      <figure><a href="amd-light.png"><img src="amd-light.png" alt="Page under simulated macular degeneration, light mode: blurred, reduced contrast, with a dark central blind spot."></a><figcaption>Light mode</figcaption></figure>
-      <figure><a href="amd-dark.png"><img src="amd-dark.png" alt="Page under simulated macular degeneration, dark mode."></a><figcaption>Dark mode</figcaption></figure>
+      <figure><a class="thumb" href="amd-light.png"><img src="amd-light.png" alt="Page under simulated macular degeneration, light mode: blurred, reduced contrast, with a dark central blind spot."></a><figcaption>Light mode</figcaption></figure>
+      <figure><a class="thumb" href="amd-dark.png"><img src="amd-dark.png" alt="Page under simulated macular degeneration, dark mode."></a><figcaption>Dark mode</figcaption></figure>
     </div>
   </section>
 
   <section class="cond">
     <h2>Deuteranopia (green-weak)</h2>
     <div class="pair">
-      <figure><a href="deuteranopia-light.png"><img src="deuteranopia-light.png" alt="Page under green-weak colour vision deficiency, light mode; fully legible."></a><figcaption>Light mode</figcaption></figure>
-      <figure><a href="deuteranopia-dark.png"><img src="deuteranopia-dark.png" alt="Page under green-weak colour vision deficiency, dark mode; fully legible."></a><figcaption>Dark mode</figcaption></figure>
+      <figure><a class="thumb" href="deuteranopia-light.png"><img src="deuteranopia-light.png" alt="Page under green-weak colour vision deficiency, light mode; fully legible."></a><figcaption>Light mode</figcaption></figure>
+      <figure><a class="thumb" href="deuteranopia-dark.png"><img src="deuteranopia-dark.png" alt="Page under green-weak colour vision deficiency, dark mode; fully legible."></a><figcaption>Dark mode</figcaption></figure>
     </div>
   </section>
 
   <section class="cond">
     <h2>Protanopia (red-weak)</h2>
     <div class="pair">
-      <figure><a href="protanopia-light.png"><img src="protanopia-light.png" alt="Page under red-weak colour vision deficiency, light mode; fully legible."></a><figcaption>Light mode</figcaption></figure>
-      <figure><a href="protanopia-dark.png"><img src="protanopia-dark.png" alt="Page under red-weak colour vision deficiency, dark mode; fully legible."></a><figcaption>Dark mode</figcaption></figure>
+      <figure><a class="thumb" href="protanopia-light.png"><img src="protanopia-light.png" alt="Page under red-weak colour vision deficiency, light mode; fully legible."></a><figcaption>Light mode</figcaption></figure>
+      <figure><a class="thumb" href="protanopia-dark.png"><img src="protanopia-dark.png" alt="Page under red-weak colour vision deficiency, dark mode; fully legible."></a><figcaption>Dark mode</figcaption></figure>
     </div>
   </section>
 
   <section class="cond">
     <h2>Tritanopia (blue-yellow)</h2>
     <div class="pair">
-      <figure><a href="tritanopia-light.png"><img src="tritanopia-light.png" alt="Page under blue-yellow colour vision deficiency, light mode; contrast preserved, fully legible."></a><figcaption>Light mode</figcaption></figure>
-      <figure><a href="tritanopia-dark.png"><img src="tritanopia-dark.png" alt="Page under blue-yellow colour vision deficiency, dark mode; contrast preserved, fully legible."></a><figcaption>Dark mode</figcaption></figure>
+      <figure><a class="thumb" href="tritanopia-light.png"><img src="tritanopia-light.png" alt="Page under blue-yellow colour vision deficiency, light mode; contrast preserved, fully legible."></a><figcaption>Light mode</figcaption></figure>
+      <figure><a class="thumb" href="tritanopia-dark.png"><img src="tritanopia-dark.png" alt="Page under blue-yellow colour vision deficiency, dark mode; contrast preserved, fully legible."></a><figcaption>Dark mode</figcaption></figure>
     </div>
   </section>
 
   <section class="cond">
     <h2>Achromatopsia (total colour blindness)</h2>
     <div class="pair">
-      <figure><a href="achromatopsia-light.png"><img src="achromatopsia-light.png" alt="Page in greyscale with no colour, light mode; headings, text and structure fully readable."></a><figcaption>Light mode</figcaption></figure>
-      <figure><a href="achromatopsia-dark.png"><img src="achromatopsia-dark.png" alt="Page in greyscale with no colour, dark mode; fully readable."></a><figcaption>Dark mode</figcaption></figure>
+      <figure><a class="thumb" href="achromatopsia-light.png"><img src="achromatopsia-light.png" alt="Page in greyscale with no colour, light mode; headings, text and structure fully readable."></a><figcaption>Light mode</figcaption></figure>
+      <figure><a class="thumb" href="achromatopsia-dark.png"><img src="achromatopsia-dark.png" alt="Page in greyscale with no colour, dark mode; fully readable."></a><figcaption>Dark mode</figcaption></figure>
     </div>
   </section>
+
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Enlarged image">
+    <button class="lb-close" id="lb-close" type="button" aria-label="Close">&times;</button>
+    <img id="lb-img" src="" alt="">
+    <p class="lb-cap" id="lb-cap"></p>
+  </div>
+
+  <script>
+    (function () {
+      var lb = document.getElementById('lb');
+      var lbImg = document.getElementById('lb-img');
+      var lbCap = document.getElementById('lb-cap');
+      var lbClose = document.getElementById('lb-close');
+      var lastTrigger = null;
+
+      function open(trigger) {
+        var img = trigger.querySelector('img');
+        var fig = trigger.closest('figure');
+        var cond = trigger.closest('.cond');
+        var mode = fig ? fig.querySelector('figcaption') : null;
+        var cap = (cond ? cond.querySelector('h2').textContent : '')
+                + (mode ? ' — ' + mode.textContent : '');
+        lbImg.src = trigger.getAttribute('href');
+        lbImg.alt = img ? img.alt : '';
+        lbCap.textContent = cap;
+        lb.classList.add('open');
+        lastTrigger = trigger;
+        lbClose.focus();
+      }
+      function close() {
+        lb.classList.remove('open');
+        lbImg.src = '';
+        if (lastTrigger) lastTrigger.focus();
+      }
+
+      document.querySelectorAll('a.thumb').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); open(a); });
+      });
+      lbClose.addEventListener('click', close);
+      lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'Tab') { e.preventDefault(); lbClose.focus(); } /* keep focus in the dialog */
+      });
+    })();
+  </script>
 </body>
 </html>
