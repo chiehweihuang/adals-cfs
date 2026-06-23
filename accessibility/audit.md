@@ -20,6 +20,13 @@ every control, no keyboard trap, skip link present; the page reflows at 320px wi
 horizontal scroll; `lang` is set; landmarks, heading order, image alt text, and link
 names are all present.
 
+## WAVE (WebAIM, light and dark mode)
+
+Independent check with the WAVE evaluation tool, captured for both themes
+(`wave-light.pdf`, `wave-dark.pdf`): 0 Errors and 0 Contrast Errors in both, AIM
+score 10/10. Each has two advisory "possible heading" alerts, which flag styled
+text that resembles a heading; they are advisory, not failures.
+
 ## Lighthouse 13.3
 
 | Category | Mobile | Desktop |

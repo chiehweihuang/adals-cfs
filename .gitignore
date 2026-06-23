@@ -18,6 +18,3 @@ aia-logo-main.svg
 
 # Dev artifacts
 .playwright-mcp/
-
-# Local PDF exports (not part of the published page)
-*.pdf
