@@ -90,20 +90,6 @@ axe 是 Deque 出的無障礙檢測引擎，業界常用。
 
 ---
 
-## 進階：指令列（工程師）
-
-裝好 Node 後，在 repo 目錄執行：
-
-```bash
-# Lighthouse (add --preset=desktop for the desktop score)
-npx lighthouse <PAGE_URL> \
-  --only-categories=performance,accessibility,best-practices,seo --output=html
-
-# axe-core: inject axe.min.js in the browser console, then run axe.run()
-```
-
----
-
 測完把結果記到同資料夾的 `audit.md`，讓每一頁都有留下紀錄。
 
 <!-- writing-harness: S0/S1/S2 ok 2026-06-24 -->
