@@ -175,11 +175,15 @@
      themes (the base var()-driven colors would blend on Navy). */
   .masthead .btn-toggle {
     position: absolute;
-    top: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
     right: clamp(1.25rem, 4vw, 2.5rem);
     z-index: 2;
+    min-width: clamp(48px, 9vw, 68px);
+    min-height: clamp(48px, 9vw, 68px);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
     background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.45);
     color: #F7F8F8;
   }
   .masthead .btn-toggle:hover {
@@ -252,7 +256,7 @@
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
-  a:hover { text-decoration-thickness: 3px; text-underline-offset: 0.22em; }
+  a:hover { text-decoration-thickness: 5px; text-underline-offset: 0.24em; }
   strong { font-weight: 600; }
 
   h2 {
@@ -489,13 +493,13 @@
     position: fixed;
     right: clamp(1rem, 3vw, 2rem);
     bottom: clamp(1rem, 3vw, 2rem);
-    width: 48px;
-    height: 48px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     border: 2px solid var(--accent);
     background: var(--accent);
     color: #FFFFFF;
-    font-size: 1.4rem;
+    font-size: 2rem;
     line-height: 1;
     cursor: pointer;
     display: flex;
